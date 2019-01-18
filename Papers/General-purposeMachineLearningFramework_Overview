@@ -1,0 +1,7 @@
+This paper is a good look at machine learning in material science from the atomic level.
+It goes through a couple of cases of actually using these machine learning algorithms to
+predict physical properties for some materials. What we are more interested in is the
+attributes that they have created, which is a rather extensive list. We can use these as a
+starting point for some properties of the materials that could be used for prediction
+purposes. The attributes are laid out in more detail in the supplementary materials, found
+here: https://www.nature.com/articles/npjcompumats201628#supplementary-information
