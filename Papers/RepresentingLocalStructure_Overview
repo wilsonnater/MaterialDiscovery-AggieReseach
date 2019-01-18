@@ -3,4 +3,6 @@ functional calculations. We are not interested in this part. The more interestin
 us is how they represent the physical structure of the materials using symmetry
 functions. This is discussed starting on the second page on the left side. These symmetry
 functions describe the local structure around each atom and could be combined with
-other information to give some physical representation of the material.
+other information to give some physical representation of the material. I think there are 
+better papers that descirbe these functions more, but I could not find them right away. I
+will look for them.
