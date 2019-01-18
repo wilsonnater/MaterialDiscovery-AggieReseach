@@ -1,0 +1,6 @@
+This paper is on constructing potentials to be used in molecular dynamics from density
+functional calculations. We are not interested in this part. The more interesting part for
+us is how they represent the physical structure of the materials using symmetry
+functions. This is discussed starting on the second page on the left side. These symmetry
+functions describe the local structure around each atom and could be combined with
+other information to give some physical representation of the material.
