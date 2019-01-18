@@ -1,0 +1,6 @@
+This paper looks at how to create a representation of a material that can be used to uniquely identify
+each material and also should help identify materials that are similar to each other.  It then uses these
+material ‘fingerprints’ to try and identify materials that should be similar to each other. We are not
+interested in the B-fingerprint or D-fingerprint pieces, which are about the electronic structure 
+(information we do not have access to for our predictions). Instead we are interested in the SiRMS descriptors,
+which describes the local structure and chemical nature of the material.
