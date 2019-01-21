@@ -1,0 +1,21 @@
+Database Information:
+
+So the database should hold 5 different pieces of information: the lattice, the atomic information, 
+the forces on the atoms, the stress on the strucutre, and where the structure is from.
+
+The structure can be in two forms: a matrix form: [[A_1 A_2 A_3][B_1 B_2 B_3][C_1 C_2 C_3]] 
+or it can be written as A,B,C(the lengths of each side) and alpha, beta, gamma(the angles between
+each vector) (https://en.wikipedia.org/wiki/Bravais_lattice#In_3_dimensions, shows examples of the 2nd
+notation)
+
+The atomic positions will be three values specifing the x,y,z position of the atom and what the atom is. 
+The difficulty is that not every strucutre will have the same number of atoms. So this will have to be
+able to store a different number of atoms.
+
+The stress on the strucutre is related to the latiice and is in the matrix form of it 
+[[A_1 A_2 A_3][B_1 B_2 B_3][C_1 C_2 C_3]], where A_1 and such are stress.
+
+The forces on the atoms is in the same form as the positions, except now the x,y,z are F_x, F_y, F_z
+the forces in the x,y, and z directions.
+
+Where the structure is from is just a refrence so we can find the strucutre again if something is strange.
