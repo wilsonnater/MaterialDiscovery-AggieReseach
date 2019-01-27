@@ -1,0 +1,7 @@
+So JSON is not a database format, but a format for transfering data from a database.
+It is still useful to learn how to work with it, because it is how we will get data
+and we might still use it as our database, becuase it can be used that way. It won't have
+all the things a database might, but it will still store data.
+
+JSON is also usually already a part of python, so just using import JSON should allow you to 
+read JSON files in python. There are plenty of resources if you google JSON python to learn it.
