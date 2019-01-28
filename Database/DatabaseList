@@ -1,0 +1,8 @@
+List of databases with calculations of stable compounds
+
+Materials Project: https://materialsproject.org/, however using pymatgen,http://pymatgen.org/,
+is an easier way to query the databse. Use http://pymatgen.org/pymatgen.ext.matproj.html to query it (MPRester)
+
+AflowLib: http://aflowlib.org/
+
+Open Quantum Material Database (OQMD): http://oqmd.org/
