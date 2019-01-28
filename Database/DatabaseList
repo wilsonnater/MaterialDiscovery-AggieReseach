@@ -5,4 +5,7 @@ is an easier way to query the databse. Use http://pymatgen.org/pymatgen.ext.matp
 
 AflowLib: http://aflowlib.org/
 
-Open Quantum Material Database (OQMD): http://oqmd.org/
+Open Quantum Material Database (OQMD): http://oqmd.org/, qmpy, http://www.oqmd.org/static/docs/, appears to be
+the method to query the database
+
+
