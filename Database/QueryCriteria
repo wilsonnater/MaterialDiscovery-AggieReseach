@@ -1,0 +1,10 @@
+The criteria to include some data into our database
+
+number of sites (nsites in material project) between 2 and 10 (can increase later, but it is a good starting point)
+
+Exclude any strucutures with: H, He, Ne, Ar, Kr, Xe, La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu,
+Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md, No, Lr, Po, At, Rn, Fr, Ra, Rf, Db, Sg, Bh, Hs, Mt, Ds, Rg, Cn
+Same thing, just by atomic number instead of atomic symbel
+By atomic number: 1 , 2, 10, 18,36, 54, 86, 57-71, and 84-112
+
+Seems like a lot, but they are rather rare elements and not used alot
