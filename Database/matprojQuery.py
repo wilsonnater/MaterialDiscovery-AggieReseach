@@ -5,8 +5,9 @@ import json
 ##get your own API key (MPRester('APIkey')) from materials project
 with MPRester('y6hicvzKBaLRWuG8') as m:
     ##Querys materials project for all strucutres with 2<= sites <=3 (all structures with 2 or 3 atomic sites)
+    ##also does n0t download any structures that contain Cl or Al
     ##It gets the strucutre and task_id from material project
-    results = m.query(criteria={"nsites":{"$gte":2,"$lte":3}},properties=['structure','task_id','full_formula'])
+    results = m.query(criteria={"nsites":{"$gte":2,"$lte":3},"elements":{"$nin":["Cl","Al"]}},properties=['structure','task_id','full_formula'])
 
 ##Writes data into json file
 ##Much of this is using pymatgen stuff indirectly
