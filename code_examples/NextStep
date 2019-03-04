@@ -1,0 +1,12 @@
+the next step is to be able to do this with any of the composition or structure featurizers
+All the featurizers are here : https://hackingmaterials.github.io/matminer/featurizer_summary.html
+
+Choose one of the featurizer sets below and create a code that can use these featurizer on our data. (Also edit this document saying which one you are using)
+
+[ElementProperty, OxidationStates, AtomicOrbitals, BandCenter, ElectronegativityDiff, DensityFeatures, RadialDistributionFunction, PartialRadialDistributionFunction, ElectronicRadialDistributionFunction, CoulombMatrix]
+[ElectronAffinity, Stoichiometry, ValenceOrbital, IonProperty, ElementFraction, SineCoulombMatrix, OrbitalFieldMatrix, MinimumRelativeDistances, SiteStatsFingerpriSOAPnt, EwaldEnergy]
+[TMetalFraction, CohesiveEnergy, Miedema, YangSolidSolution, AtomicPackingEfficiency, BondFractions, BagofBonds, StructuralHeterogeneity, MaximumPackingEfficiency, CGCNNFeaturizer, SOAP]
+
+The first featurizers are composition, the last ones are structure
+You should use the example data posted on the github
+This is where the source code for all of featurizers are: https://github.com/hackingmaterials/matminer/tree/master/matminer/featurizers
