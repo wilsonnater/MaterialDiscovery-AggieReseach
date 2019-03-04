@@ -10,3 +10,6 @@ Choose one of the featurizer sets below and create a code that can use these fea
 The first featurizers are composition, the last ones are structure
 You should use the example data posted on the github
 This is where the source code for all the featurizers are: https://github.com/hackingmaterials/matminer/tree/master/matminer/featurizers
+
+
+I can do composition! - Haley
