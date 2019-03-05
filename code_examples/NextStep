@@ -3,11 +3,11 @@ All the featurizers are here : https://hackingmaterials.github.io/matminer/featu
 
 Choose one of the featurizer sets below and create a code that can use these featurizer on our data. (Also edit this document saying which one you are using)
 
-[ElementProperty, OxidationStates, AtomicOrbitals, BandCenter, ElectronegativityDiff, DensityFeatures, RadialDistributionFunction, PartialRadialDistributionFunction, ElectronicRadialDistributionFunction, CoulombMatrix]
-[ElectronAffinity, Stoichiometry, ValenceOrbital, IonProperty, ElementFraction, SineCoulombMatrix, OrbitalFieldMatrix, MinimumRelativeDistances, SiteStatsFingerpriSOAPnt, EwaldEnergy]
-[TMetalFraction, CohesiveEnergy, Miedema, YangSolidSolution, AtomicPackingEfficiency, BondFractions, BagofBonds, StructuralHeterogeneity, MaximumPackingEfficiency, CGCNNFeaturizer, SOAP]
+Set 1: [ElementProperty, OxidationStates, AtomicOrbitals, BandCenter, ElectronegativityDiff, DensityFeatures, RadialDistributionFunction, PartialRadialDistributionFunction, ElectronicRadialDistributionFunction, CoulombMatrix]
+Set 2: [ElectronAffinity, Stoichiometry, ValenceOrbital, IonProperty, ElementFraction, SineCoulombMatrix, OrbitalFieldMatrix, MinimumRelativeDistances, SiteStatsFingerpriSOAPnt, EwaldEnergy]
+Set 3: [TMetalFraction, CohesiveEnergy, Miedema, YangSolidSolution, AtomicPackingEfficiency, BondFractions, BagofBonds, StructuralHeterogeneity, MaximumPackingEfficiency, CGCNNFeaturizer, SOAP]
 
-The first featurizers are composition, the last ones are structure
+In each set, the first couple of featurizers are composition, while the the last ones are structure featurizers
 You should use the example data posted on the github
 This is where the source code for all the featurizers are: https://github.com/hackingmaterials/matminer/tree/master/matminer/featurizers
 
