@@ -1,4 +1,4 @@
-from pymatgen.core.structure import IStructure
+from pymatgen.core.structure import Structure
 import pandas as pd
 from matminer.featurizers.base import MultipleFeaturizer
 from matminer.featurizers.composition import ElementProperty #Composition Feature
@@ -17,7 +17,7 @@ structlist = []
 namelist = []
 namecolumns = ['structure']
 for i in CIFfiles:
-    structlist.append([IStructure.from_file(directoryname+i)]) #Converts CIF to pymatgen structure object
+    structlist.append([Structure.from_file(directoryname+i)]) #Converts CIF to pymatgen structure object
     namelist.append(os.path.splitext(i)[0]) #Collects all the structure names
 
 
