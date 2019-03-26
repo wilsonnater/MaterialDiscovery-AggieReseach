@@ -19,27 +19,28 @@ for i in allfiles:
 #Creates a list of pymatgen.structure objects and a name of each structure
 structlist = []
 namelist = []
+structs = []
 namecolumns = ['structure']
 for i in CIFfiles:
     structlist.append([Structure.from_file(directoryname+i)]) #Converts CIF to pymatgen structure object
     namelist.append(os.path.splitext(i)[0]) #Collects all the structure names
-
+    structs.append(Structure.from_file(directoryname+i))
 #Creates Pandas dataframe with data being a list of structures and the row name being the structure name
-dftest = pd.DataFrame(data = structlist, index = namelist,columns=namecolumns) 
+dftest = pd.DataFrame(data = structlist, index = namelist, columns=namecolumns) 
 
-#unsure if running a particular instance of a class will mess anything up in MultipleFeaturizer()
 p = PartialRadialDistributionFunction()
-p.fit(np.asarray(structlist)[0])
+p.fit(np.asarray(structs))
 
 c = CoulombMatrix()
-c.fit(np.asarray(structlist)[0])
+c.fit(np.asarray(structs))
 
 erdf = ElectronicRadialDistributionFunction()
-erdf.cutoff = 3 #longest diagonal of lattice...I picked a number semi-arbitrarily
+erdf.cutoff = 10 #longest diagonal of lattice...I picked a number semi-arbitrarily
 
 #Featurizes the structures
 featurizer = MultipleFeaturizer([ElementProperty.from_preset('magpie'), OxidationStates(), 
                                  AtomicOrbitals(), BandCenter(), ElectronegativityDiff(), DensityFeatures(), 
                                  RadialDistributionFunction(), p, c, erdf])
 
-r=(featurizer.featurize_dataframe(dftest, ['structure'])) #Featurizes entire Pandas Dataframe 
+r=(featurizer.featurize_many(dftest, ['structure'])) #Featurizes entire Pandas Dataframe  
+#Yay it runs!
