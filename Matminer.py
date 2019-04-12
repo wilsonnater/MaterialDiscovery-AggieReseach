@@ -1,4 +1,16 @@
+from pymatgen.core.structure import Structure
+import pandas as pd
+from matminer.featurizers.base import MultipleFeaturizer
+from matminer.featurizers.composition import * #Composition Feature
+from matminer.featurizers.structure import * #Structure features
+from matminer.featurizers.site import * #Structure Featurizers
+
+#To get this code working, you will need to get all the cif file names in a list
+#Also tell me if there seems to a be a big issue witht this code, I haven't teste it exstensively.
+
+posfiles = os.listdir(pathtodir)
 #Creates a list of pymatgen.structure objects and a name from each heterostructure
+#posfiles are all the file names
 structlist = []
 for i in posfiles:
     structlist.append([Structure.from_file(pathtodir+i)])
