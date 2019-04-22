@@ -1,0 +1,107 @@
+#this file featurizes the database and cleans it up
+
+
+from pymatgen.core.structure import Structure
+import pandas as pd
+from matminer.featurizers.base import MultipleFeaturizer
+from matminer.featurizers.composition import * #Composition Feature
+from matminer.featurizers.structure import * #Structure features
+from matminer.featurizers.site import * #site Featurizers
+import os
+
+#Grabs all CIF files in a directory
+CIFfiles = []  
+directoryname = '../matDiscovery/examples/' #The directory it looks in #oqmdData
+allfiles = os.listdir(directoryname)
+for i in allfiles:
+    if os.path.splitext(i)[-1] == '.cif':
+        CIFfiles.append(i) #List of CIF files
+        
+#get a random sample
+import random
+
+array = []
+size = 10  #****change********
+for i in range(size): #sample size
+    array.append(random.randint(0,len(CIFfiles)))
+
+         
+#Creates a list of pymatgen.structure objects and a name of each structure
+structlist = []
+namelist = []
+structs = []
+namecolumns = ['structure']        
+for i in array:
+    structlist.append([Structure.from_file(directoryname + CIFfiles[i])]) #Converts CIF to pymatgen structure object
+    namelist.append(os.path.splitext(CIFfiles[i])[0]) #Collects all the structure names
+    structs.append(Structure.from_file(directoryname + CIFfiles[i]))
+
+#adds oxidation state by guessing through pymatgen
+for i in range(len(structlist)):
+    structlist[i][0].add_oxidation_state_by_guess()
+
+#create a new CIFfiles for index set for the dataframe
+subCIFfiles = []
+for j in array:
+    subCIFfiles.append(CIFfiles[j])
+
+#Creates Pandas dataframe with data being a list of structures and the row name being the structure name
+dftest = pd.DataFrame(data = structlist, index = subCIFfiles, columns=namecolumns) 
+
+#Featurizes the structures
+#Creates the Featurizers and sets any required inputs for them
+featurizer = MultipleFeaturizer([GlobalSymmetryFeatures(),RadialDistributionFunction(cutoff=7.5),
+    SiteStatsFingerprint(AGNIFingerprints(directions=(None,'x', 'y'))),SiteStatsFingerprint(OPSiteFingerprint()),
+    SiteStatsFingerprint.from_preset("CoordinationNumber_ward-prb-2017"),SiteStatsFingerprint(GaussianSymmFunc()),
+    SiteStatsFingerprint(EwaldSiteEnergy(accuracy=3)),DensityFeatures(),
+    SiteStatsFingerprint(GeneralizedRadialDistributionFunction.from_preset('gaussian')),
+    SiteStatsFingerprint(LocalPropertyDifference(data_source=MagpieData(),
+    properties=["Number", "MendeleevNumber", "AtomicWeight","MeltingT", "Column", "Row", "CovalentRadius",
+    "Electronegativity", "NsValence", "NpValence","NdValence", "NfValence", "NValence", "NsUnfilled",
+    "NpUnfilled", "NdUnfilled", "NfUnfilled", "NUnfilled", "GSvolume_pa", "GSbandgap","GSmagmom"])),
+    SiteStatsFingerprint(SiteElementalProperty.from_preset("seko-prb-2017")),EwaldEnergy(),
+    StructuralHeterogeneity(),ChemicalOrdering(),StructureComposition(ElementProperty.from_preset('magpie')),
+    StructureComposition(AtomicOrbitals()),StructureComposition(BandCenter()),StructureComposition(ElectronegativityDiff()),
+    StructureComposition(ElectronAffinity()),StructureComposition(Stoichiometry()),
+    StructureComposition(ValenceOrbital()),StructureComposition(IonProperty()),StructureComposition(Miedema()),
+    StructureComposition(YangSolidSolution())])
+
+#Featurization had to be run in pieces because of the size of the data
+r=(featurizer.featurize_dataframe(dftest,['structure'],ignore_errors=True)) #Featurizes entire Pands Dataframe 
+
+#drop all columns with NaN in them
+r = r.dropna(axis = 1)
+
+#drop all columns with only one value for the feature
+todrop = []
+for j in r.columns:
+    if j == 'structure' or j == 'radial distribution function': 
+        continue
+    else:
+        if r[j].nunique(1) == 1: #1 = columns
+            todrop.append(j)
+            
+for colName in todrop:
+    r.drop(colName, axis = 1)
+
+    
+    
+#ERDF and RDF make them new features based on bins (i.e. 0-2 becomes ERDF2, etc)
+count = []
+
+#get the column names
+dist = r["radial distribution function"][0]["distances"]
+columnNames = []
+for i in dist:
+    columnNames.append("radial distribution function" + str(i)) 
+
+#get the actual data
+for k in range(size):
+    count.append(r["radial distribution function"][k]["distribution"]) 
+    
+    
+dfRDF = pd.DataFrame(data = count, columns = columnNames, index = r.index)
+    
+#now merge the two databases
+result = pd.concat([r, dfRDF], axis = 1)
+result.drop("radial distribution function", axis = 1)
