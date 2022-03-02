@@ -1,6 +1,6 @@
 # MaterialDiscovery-AggieReseach
 
-This is the github for our materials discovery project. I will add more stuff later. 
+This is the github for our materials discovery project through Aggie Reasearch. Not Active. 
 
 Some resources for unit cells:
 This is solid state physics in a nutshell. The videos in topic 2 are about the unit cell.
